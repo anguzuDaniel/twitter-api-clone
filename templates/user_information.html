@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}" rel="stylesheet">
+    <script type="module" src="{{ url_for('static', path='/firebase-login.js') }}"></script>
+</head>
+<body>
+    <h1>User Profile</h1>
+
+    {% if user_info %}
+        <h3>User information</h3>
+        <p><a href="/profile/{{ user_info.username }}" class="name">{{ user_info.username }}</p>
+
+        <div>
+            {% if is_following_user %}
+                <form action="/unfollow/{{ user_info.username }}" method="post">
+                    <button type="submit">Unfollow</button>
+                </form>
+            {% else %}
+                <form action="/follow/{{ user_info.username }}" method="post">
+                    <button type="submit">Follow</button>
+                </form>
+            {% endif %}
+        </div>
+
+        {% if tweets %}
+            <h3>Tweets by {{ username }}</h3>
+            {% for tweet in tweets %}
+                <div class="tweet-container">
+                    <h5><a href="/profile/{{ tweet.username }}" class="name">{{ tweet.username }}</a></h5>
+
+                    {% if tweet.image_url %}
+                        <img src="{{ tweet.image_url }}" alt="Tweet image" class="tweet-image">
+                    {% endif %}
+
+                    <p>{{ tweet.name }}</p>
+                    <p>{{ tweet.date.strftime("%Y-%m-%d %H:%M:%S") }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+</body>
+</html>

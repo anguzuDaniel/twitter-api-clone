@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}" rel="stylesheet">
+    <script type="module" src="{{ url_for('static', path='/firebase-login.js') }}"></script>
+</head>
+
+<body>
+    <div id="login-box" hidden="true">
+        Email: <input type="email" name="" id="email"> <br>
+        Password: <input type="password" name="" id="password"> <br>
+        <button id="login">login</button>
+        <button id="sign-up">Sign Up</button>
+    </div>
+
+    <button id="sign-out" hidden="true">Sign out</button>
+
+    {% if user_token %}
+        {% if user_info %}
+            <p>You are logged in as, <a href="/profile/{{ user_info.username }}" class="name">{{ user_info.username }}</a>.</p>
+        {% endif %}
+
+        <!-- Add a tweet -->
+        <form id="tweet-form" action="/tweet" method="post" enctype="multipart/form-data">
+            <label for="images" class="upload_file">
+                <span class="upload_file-title">Drop file here</span>
+                or
+                <input type="file" name="image" id="image">
+            </label>
+
+            <textarea name="tweet" maxlength="140" placeholder="What's happening?" required></textarea>
+            <button type="submit">Tweet</button>
+        </form>
+
+        <div>
+            <!-- Search for a user -->
+            <form action="/search_username" method="post" class="search_form">
+                <input type="search" name="name" id="username" placeholder="Search for a user..." required class="search_input">
+                <button type="submit" class="search_button">Search</button>
+            </form>
+
+            <div class="search-results">
+                {% if users_found %}
+                    <h3>Results for {{ name }}</h3>
+                    {% for user in users_found %}
+                        <h5><a href="/profile/{{ user.username }}" class="name">{{ user.username }}</a></h5>
+                    {% endfor %}
+                {% else %}
+                    <p>No results found for "{{ name }}".</p>
+                {% endif %}
+            </div>
+
+            <div>
+                <form action="/search_tweets" method="post" class="search_form">
+                    <input type="text" name="words" placeholder="Search content in tweets..." required class="search_input">
+                    <button type="submit" class="search_button">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            {% if tweets %}
+                {% for tweet in tweets %}
+                    <div class="tweet-container">
+                        <h5><a href="/profile/{{ tweet.username }}" class="name">{{ tweet.username }}</a></h5>
+                        
+                        {% if tweet.image_url %}
+                        <img src="{{ tweet.image_url }}" alt="Tweet image" class="tweet-image">
+                        {% endif %}
+
+                        <p>{{ tweet.name }}</p>
+                        <p>{{ tweet.date.strftime("%Y-%m-%d %H:%M:%S") }}</p>
+                    </div>
+                    <hr>
+                {% endfor %}
+            {% else %}
+                <section>
+                    <article>
+                        <h3 class="timeline">Timeline</h3>
+                        {% if timeline_tweets %}
+                            {% for tweet in timeline_tweets %}
+                                <div class="tweet-container">
+                                    <h5><a href="/profile/{{ tweet.username }}" class="name">{{ tweet.username }}</a></h5>
+
+                                    {% if tweet.image_url %}
+                                        <img src="{{ tweet.image_url }}" alt="Tweet image" class="tweet-image">
+                                    {% endif %}
+
+                                    <p>{{ tweet.name }}</p>
+                                    <p>{{ tweet.date.strftime("%Y-%m-%d %H:%M:%S") }}</p>
+
+                                    {% if tweet.username == user_info['username'] %}
+                                        <a href='/edit/{{ tweet.id }}' class="edit">Edit</a>
+                                        <a href='/delete/{{ tweet.id }}' class="delete">Delete</a>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <p>No tweets found.</p>
+                        {% endif %}
+                    </article>
+                </section>            
+            {% endif %}
+        </div>
+    {% endif %}
+</body>
+
+</html>

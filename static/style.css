@@ -1,0 +1,278 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f8fa;
+    margin: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.highlight-green {
+    color: green;
+    font-weight: bold;
+}
+
+.highlight-red {
+    color: red;
+    font-weight: bold;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px;
+    width: 300px;
+    display: inline-block;
+}
+
+#login-box {
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ccd6dd;
+    border-radius: 5px;
+}
+
+#login-box input[type="email"],
+#login-box input[type="password"],
+#login-box button {
+    margin-top: 10px;
+    padding: 5px;
+    width: 100%;
+}
+
+button {
+    background-color: #1da1f2;
+    color: #ffffff;
+    border: none;
+    border-radius: 9999px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#sign-out {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #1da1f2;
+    border: 1px solid #1da1f2;
+    border-radius: 9999px;
+    cursor: pointer;
+}
+
+#sign-out:hover {
+    background-color: #1da1f2;
+    color: #ffffff;
+}
+
+#tweet-form, #edit-tweet-form {
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ccd6dd;
+    border-radius: 5px;
+}
+
+#tweet-form textarea, 
+#edit-tweet-form textarea {
+    margin-bottom: 10px;
+    width: 100%;
+    resize: none;
+    border: 1px solid #ccd6dd;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+}
+
+#tweet-form button {
+    float: right;
+}
+
+#search-form {
+    margin: 20px;
+}
+
+#search-form input[type="search"] {
+    padding: 5px;
+    width: 70%;
+    border: 1px solid #ccd6dd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#search-form button {
+    padding: 7px 10px;
+    border: 1px solid #ccd6dd;
+    border-radius: 5px;
+    background-color: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#search-form button:hover {
+    background-color: #f5f8fa;
+}
+
+.tweet-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ccd6dd;
+    border-radius: 5px;
+}
+
+.tweet-container h5 {
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.tweet-container p {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #657786;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ccd6dd;
+    margin: 20px 0;
+}
+
+.name {
+    text-decoration: none;
+    color: #1da1f2;
+    font-size: 18px;
+}
+
+input[type="search"] {
+    width: 100%;
+    padding: 4px 8px;
+}
+
+.edit {
+    padding: 10px 15px;
+    background-color: #1da1f2;
+    color: white;
+    border-radius: 9999px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.message {
+    margin-block: 10px;
+    color: #657786;
+}
+
+.delete {
+    padding: 10px 15px;
+    color: white;
+    border-radius: 9999px;
+    text-decoration: none;
+    font-size: 14px;
+    background-color: red;
+}
+
+.tweet-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.upload_file {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px dashed #555;
+    color: #444;
+    cursor: pointer;
+    transition: background .2s ease-in-out, border .2s ease-in-out;
+    margin-bottom: 5px;
+  }
+  
+  .upload_file:hover {
+    background: #eee;
+    border-color: #111;
+  }
+  
+  .upload_file:hover .drop-title {
+    color: #222;
+  }
+  
+  .upload_file-title {
+    color: #444;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    transition: color .2s ease-in-out;
+  }
+
+  .search-results {
+    margin-bottom: 5px;
+    margin-inline: 30px;
+  }
+
+  .timeline {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .search_input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ccd6dd;
+    border-radius: 5px;
+  }
+
+  .search_input :focus {
+    border: 1px solid #1da1f2;
+  }
+
+  .search_input ::placeholder {
+    color: #657786;
+  }
+
+  .search_form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 5px;
+  }
+
+  .search_button {
+    padding: 7px 10px;
+    border: 1px solid #ccd6dd;
+    border-radius: 5px;
+    background-color: #1da1f2;
+    cursor: pointer;
+    font-size: 16px;
+  }
